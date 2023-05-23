@@ -5,7 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "TreeSitterLanguages",
-    platforms: [.iOS(.v14)],
+    platforms: [.macOS(.v12), .iOS(.v14)],
     products: [
         .library(name: "TreeSitterC", targets: ["TreeSitterC"]),
         .library(name: "TreeSitterCQueries", targets: ["TreeSitterCQueries"]),
