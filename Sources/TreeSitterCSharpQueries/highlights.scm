@@ -1,5 +1,6 @@
 ;; Methods
-(method_declaration (identifier) @type (identifier) @function)
+(method_declaration name: (identifier) @function)
+(local_function_statement name: (identifier) @function)
 
 ;; Types
 (interface_declaration name: (identifier) @type)
@@ -8,10 +9,10 @@
 (struct_declaration (identifier) @type)
 (record_declaration (identifier) @type)
 (record_struct_declaration (identifier) @type)
-(namespace_declaration name: (identifier) @type)
+(namespace_declaration name: (identifier) @module)
 
-(constructor_declaration name: (identifier) @type)
-(destructor_declaration name: (identifier) @type)
+(constructor_declaration name: (identifier) @constructor)
+(destructor_declaration name: (identifier) @constructor)
 
 [
   (implicit_type)
@@ -45,7 +46,6 @@
 [
   (boolean_literal)
   (null_literal)
-  (void_keyword)
 ] @constant.builtin
 
 ;; Comments
@@ -103,6 +103,8 @@
 (escape_sequence) @keyword
 
 [
+  "add"
+  "alias"
   "as"
   "base"
   "break"
@@ -118,9 +120,11 @@
   "enum"
   "event"
   "explicit"
+  "extern"
   "finally"
   "for"
   "foreach"
+  "global"
   "goto"
   "if"
   "implicit"
@@ -128,11 +132,14 @@
   "is"
   "lock"
   "namespace"
+  "notnull"
   "operator"
   "params"
   "return"
+  "remove"
   "sizeof"
   "stackalloc"
+  "static"
   "struct"
   "switch"
   "throw"
@@ -199,7 +206,7 @@
 (lambda_expression) @variable
 
 ;; Attribute
-(attribute) @type
+(attribute) @attribute
 
 ;; Parameter
 (parameter
@@ -238,3 +245,6 @@
 
 ;; Lock statement
 (lock_statement (identifier) @variable)
+
+;; Method calls
+(invocation_expression (member_access_expression name: (identifier) @function))
